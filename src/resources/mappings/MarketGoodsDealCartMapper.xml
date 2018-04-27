@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.mapper.MarketGoodsDealCartMapper" >
+  <resultMap id="BaseResultMap" type="com.company.dto.MarketGoodsDealCart" >
+    <id column="MARKET_GOODS_CART_ID" property="marketGoodsCartId" jdbcType="BIGINT" />
+    <result column="MARKET_ID" property="marketId" jdbcType="BIGINT" />
+    <result column="GOODS_ID" property="goodsId" jdbcType="BIGINT" />
+    <result column="GOODS_DEAL_TYPE" property="goodsDealType" jdbcType="TINYINT" />
+    <result column="GOODS_DEAL_SUB_TYPE" property="goodsDealSubType" jdbcType="TINYINT" />
+    <result column="SOURCE_TYPE" property="sourceType" jdbcType="TINYINT" />
+    <result column="ITEM_ID" property="itemId" jdbcType="BIGINT" />
+    <result column="MATERIAL_ID" property="materialId" jdbcType="BIGINT" />
+    <result column="MATERIAL_NAME" property="materialName" jdbcType="VARCHAR" />
+    <result column="GOODS_DESC" property="goodsDesc" jdbcType="VARCHAR" />
+    <result column="GOODS_NAME" property="goodsName" jdbcType="VARCHAR" />
+    <result column="CNT" property="cnt" jdbcType="DECIMAL" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="SUPPLIER_MEMBER_ID" property="supplierMemberId" jdbcType="BIGINT" />
+    <result column="SUPPLIER_NAME" property="supplierName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="OPER_ACCT_ID" property="operAcctId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MARKET_GOODS_CART_ID, MARKET_ID, GOODS_ID, GOODS_DEAL_TYPE, GOODS_DEAL_SUB_TYPE, 
+    SOURCE_TYPE, ITEM_ID, MATERIAL_ID, MATERIAL_NAME, GOODS_DESC, GOODS_NAME, CNT, UNIT, 
+    SUPPLIER_MEMBER_ID, SUPPLIER_NAME, CREATE_TIME, OPER_ACCT_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from market_goods_deal_cart
+    where MARKET_GOODS_CART_ID = #{marketGoodsCartId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from market_goods_deal_cart
+    where MARKET_GOODS_CART_ID = #{marketGoodsCartId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.company.dto.MarketGoodsDealCart" >
+    insert into market_goods_deal_cart (MARKET_GOODS_CART_ID, MARKET_ID, GOODS_ID, 
+      GOODS_DEAL_TYPE, GOODS_DEAL_SUB_TYPE, SOURCE_TYPE, 
+      ITEM_ID, MATERIAL_ID, MATERIAL_NAME, 
+      GOODS_DESC, GOODS_NAME, CNT, 
+      UNIT, SUPPLIER_MEMBER_ID, SUPPLIER_NAME, 
+      CREATE_TIME, OPER_ACCT_ID)
+    values (#{marketGoodsCartId,jdbcType=BIGINT}, #{marketId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, 
+      #{goodsDealType,jdbcType=TINYINT}, #{goodsDealSubType,jdbcType=TINYINT}, #{sourceType,jdbcType=TINYINT}, 
+      #{itemId,jdbcType=BIGINT}, #{materialId,jdbcType=BIGINT}, #{materialName,jdbcType=VARCHAR}, 
+      #{goodsDesc,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{cnt,jdbcType=DECIMAL}, 
+      #{unit,jdbcType=VARCHAR}, #{supplierMemberId,jdbcType=BIGINT}, #{supplierName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{operAcctId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.dto.MarketGoodsDealCart" >
+    insert into market_goods_deal_cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="marketGoodsCartId != null" >
+        MARKET_GOODS_CART_ID,
+      </if>
+      <if test="marketId != null" >
+        MARKET_ID,
+      </if>
+      <if test="goodsId != null" >
+        GOODS_ID,
+      </if>
+      <if test="goodsDealType != null" >
+        GOODS_DEAL_TYPE,
+      </if>
+      <if test="goodsDealSubType != null" >
+        GOODS_DEAL_SUB_TYPE,
+      </if>
+      <if test="sourceType != null" >
+        SOURCE_TYPE,
+      </if>
+      <if test="itemId != null" >
+        ITEM_ID,
+      </if>
+      <if test="materialId != null" >
+        MATERIAL_ID,
+      </if>
+      <if test="materialName != null" >
+        MATERIAL_NAME,
+      </if>
+      <if test="goodsDesc != null" >
+        GOODS_DESC,
+      </if>
+      <if test="goodsName != null" >
+        GOODS_NAME,
+      </if>
+      <if test="cnt != null" >
+        CNT,
+      </if>
+      <if test="unit != null" >
+        UNIT,
+      </if>
+      <if test="supplierMemberId != null" >
+        SUPPLIER_MEMBER_ID,
+      </if>
+      <if test="supplierName != null" >
+        SUPPLIER_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="operAcctId != null" >
+        OPER_ACCT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="marketGoodsCartId != null" >
+        #{marketGoodsCartId,jdbcType=BIGINT},
+      </if>
+      <if test="marketId != null" >
+        #{marketId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsDealType != null" >
+        #{goodsDealType,jdbcType=TINYINT},
+      </if>
+      <if test="goodsDealSubType != null" >
+        #{goodsDealSubType,jdbcType=TINYINT},
+      </if>
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=TINYINT},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="materialId != null" >
+        #{materialId,jdbcType=BIGINT},
+      </if>
+      <if test="materialName != null" >
+        #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDesc != null" >
+        #{goodsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="cnt != null" >
+        #{cnt,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierMemberId != null" >
+        #{supplierMemberId,jdbcType=BIGINT},
+      </if>
+      <if test="supplierName != null" >
+        #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operAcctId != null" >
+        #{operAcctId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.dto.MarketGoodsDealCart" >
+    update market_goods_deal_cart
+    <set >
+      <if test="marketId != null" >
+        MARKET_ID = #{marketId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        GOODS_ID = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsDealType != null" >
+        GOODS_DEAL_TYPE = #{goodsDealType,jdbcType=TINYINT},
+      </if>
+      <if test="goodsDealSubType != null" >
+        GOODS_DEAL_SUB_TYPE = #{goodsDealSubType,jdbcType=TINYINT},
+      </if>
+      <if test="sourceType != null" >
+        SOURCE_TYPE = #{sourceType,jdbcType=TINYINT},
+      </if>
+      <if test="itemId != null" >
+        ITEM_ID = #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="materialId != null" >
+        MATERIAL_ID = #{materialId,jdbcType=BIGINT},
+      </if>
+      <if test="materialName != null" >
+        MATERIAL_NAME = #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDesc != null" >
+        GOODS_DESC = #{goodsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="cnt != null" >
+        CNT = #{cnt,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null" >
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierMemberId != null" >
+        SUPPLIER_MEMBER_ID = #{supplierMemberId,jdbcType=BIGINT},
+      </if>
+      <if test="supplierName != null" >
+        SUPPLIER_NAME = #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operAcctId != null" >
+        OPER_ACCT_ID = #{operAcctId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where MARKET_GOODS_CART_ID = #{marketGoodsCartId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.dto.MarketGoodsDealCart" >
+    update market_goods_deal_cart
+    set MARKET_ID = #{marketId,jdbcType=BIGINT},
+      GOODS_ID = #{goodsId,jdbcType=BIGINT},
+      GOODS_DEAL_TYPE = #{goodsDealType,jdbcType=TINYINT},
+      GOODS_DEAL_SUB_TYPE = #{goodsDealSubType,jdbcType=TINYINT},
+      SOURCE_TYPE = #{sourceType,jdbcType=TINYINT},
+      ITEM_ID = #{itemId,jdbcType=BIGINT},
+      MATERIAL_ID = #{materialId,jdbcType=BIGINT},
+      MATERIAL_NAME = #{materialName,jdbcType=VARCHAR},
+      GOODS_DESC = #{goodsDesc,jdbcType=VARCHAR},
+      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      CNT = #{cnt,jdbcType=DECIMAL},
+      UNIT = #{unit,jdbcType=VARCHAR},
+      SUPPLIER_MEMBER_ID = #{supplierMemberId,jdbcType=BIGINT},
+      SUPPLIER_NAME = #{supplierName,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      OPER_ACCT_ID = #{operAcctId,jdbcType=BIGINT}
+    where MARKET_GOODS_CART_ID = #{marketGoodsCartId,jdbcType=BIGINT}
+  </update>
+</mapper>
